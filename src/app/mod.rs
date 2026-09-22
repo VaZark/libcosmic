@@ -13,6 +13,7 @@ pub mod context_drawer;
 pub use context_drawer::{ContextDrawer, context_drawer};
 use iced::application::BootFn;
 pub mod cosmic;
+pub mod quick_settings;
 pub mod settings;
 
 pub type Task<M> = iced::Task<crate::Action<M>>;
@@ -418,6 +419,14 @@ where
         None
     }
 
+    /// Returns the application's optional Quick Settings presentation model.
+    ///
+    /// The model should contain only the controls intentionally exposed to the shell.
+    /// Application state remains authoritative and private to the application process.
+    fn quick_settings_model(&self) -> Option<quick_settings::QuickSettingsModel> {
+        None
+    }
+
     /// Called before closing the application. Returning a message will override closing windows.
     fn on_app_exit(&mut self) -> Option<Self::Message> {
         None
@@ -440,6 +449,17 @@ where
 
     /// Called when a navigation item is selected.
     fn on_nav_select(&mut self, id: nav_bar::Id) -> Task<Self::Message> {
+        Task::none()
+    }
+
+    /// Called when a Quick Settings host sends an action for one of this application's controls.
+    ///
+    /// The application should map the semantic action into its existing update/state path rather
+    /// than maintaining a second Quick Settings-specific state machine.
+    fn on_quick_settings_action(
+        &mut self,
+        event: quick_settings::QuickSettingsEvent,
+    ) -> Task<Self::Message> {
         Task::none()
     }
 

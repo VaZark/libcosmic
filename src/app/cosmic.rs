@@ -895,6 +895,10 @@ impl<T: Application> Cosmic<T> {
                 return self.app.on_nav_select(key);
             }
 
+            Action::QuickSettings(event) => {
+                return self.app.on_quick_settings_action(event);
+            }
+
             Action::NavBarContext(key) => {
                 self.app.core_mut().nav_bar_set_context(key);
                 return self.app.on_nav_context(key);
