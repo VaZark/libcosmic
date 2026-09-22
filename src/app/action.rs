@@ -34,6 +34,8 @@ pub enum Action {
     Minimize,
     /// Activates a navigation element from the nav bar.
     NavBar(nav_bar::Id),
+    /// Routes a semantic Quick Settings action to the application.
+    QuickSettings(crate::app::quick_settings::Event),
     /// Activates a context menu for an item from the nav bar.
     NavBarContext(nav_bar::Id),
     /// A new window was opened.
