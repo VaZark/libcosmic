@@ -423,7 +423,7 @@ where
     ///
     /// The model should contain only the controls intentionally exposed to the shell.
     /// Application state remains authoritative and private to the application process.
-    fn quick_settings_model(&self) -> Option<quick_settings::Model> {
+    fn quick_settings_model(&self) -> Option<quick_settings::QuickSettingsModel> {
         None
     }
 
@@ -458,7 +458,7 @@ where
     /// than maintaining a second Quick Settings-specific state machine.
     fn on_quick_settings_action(
         &mut self,
-        event: quick_settings::Event,
+        event: quick_settings::QuickSettingsEvent,
     ) -> Task<Self::Message> {
         Task::none()
     }
